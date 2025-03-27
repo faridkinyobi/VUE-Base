@@ -5,17 +5,35 @@
 
 <template>
   <app-header />
+  <div class="container">
+    <profile-page :name="name" :lastname="lastName" :userAge="userAge">
+    </profile-page>
+    <button @click="handleUpdate">Update</button>
+  </div>
   <app-footer />
 </template>
 <script>
-import Footer from "./components/generals/appFooter.vue";
-
+import ProfilePage from "./components/user/ProfilePage.vue";
 export default {
   components: {
-    "app-footer": Footer,
+    ProfilePage,
   },
-  data() {},
+  data() {
+    return {
+      name: "Abdulah",
+      lastName: "Abdul",
+      userAge: 20,
+    };
+  },
+  methods: {
+    handleUpdate() {
+      this.name = 'alamsah';
+    },
+  },
 };
 </script>
 <style scoped>
+.container {
+  padding: 20px;
+}
 </style>

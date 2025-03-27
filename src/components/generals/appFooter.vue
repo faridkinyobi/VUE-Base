@@ -4,5 +4,12 @@
 export default {};
 </script>
 
-<style>
+<style scope>
+footer {
+  background-color: #fa0000;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+}
 </style>
