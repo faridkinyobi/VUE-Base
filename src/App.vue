@@ -1,74 +1,30 @@
-<!-- <script setup>
-// import HelloWorld from "./components/HelloWorld.vue";
-// import TheWelcome from "./components/TheWelcome.vue";
-</script> -->
 
 <template>
   <app-header />
+
   <!-- props -->
   <div class="container">
-    <profile-page
-      :name="name"
-      :lastname="lastName"
-      :userAge="userAge"
-      :hobby="hobby"
-      :userParent="userParent"
-      @update-cildren="userAge = $event"
-      @hallow="handleHallow"
-      :handleHobby="handleHobby"
-    >
-    </profile-page>
-    <button @click="handleUpdate">Update Name</button>
+    <life-comont v-if="show" ></life-comont>
   </div>
-  <!-- end props -->
-
-  <!-- slots -->
-  <compont-brand>
-    <template v-slot:top>
-      <strong>top content brand</strong>
-    </template>
-    <template v-slot:brand>
-      <ul style="padding: 10px">
-        <li v-for="(items, index) in brand" :key="index">{{ items }}</li>
-      </ul>
-    </template>
-    <strong>botton content brand</strong>
-  </compont-brand>
-  <!-- end slots -->
   <app-footer />
 </template>
 <script>
-import ProfilePage from "./components/user/ProfilePage.vue";
-import compontBrand from "./components/cars/brand.vue";
+import lifeComont from "./components/Life/index.vue";
 export default {
   components: {
-    ProfilePage,
-    compontBrand,
+    lifeComont,
   },
   data() {
     return {
-      name: "Abdulah",
-      lastName: "Abdul",
-      hobby: "swimming",
-      userAge: 20,
-      userParent: {
-        father: "dhani",
-        mother: "siti",
-      },
-      brand: ["toyota", "honda", "suzuki"],
+      show: true,
     };
   },
-  methods: {
-    handleUpdate() {
-      this.name = "alamsah";
-    },
-    handleHallow() {
-      alert("Hallow word");
-    },
-    handleHobby(value) {
-      this.hobby = value;
-    },
+  mounted() {
+    setTimeout(() => {
+      this.show = false;
+    }, 5000);
   },
+  methods: {},
 };
 </script>
 <style scoped>
