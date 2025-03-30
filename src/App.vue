@@ -5,6 +5,7 @@
 
 <template>
   <app-header />
+  <!-- props -->
   <div class="container">
     <profile-page
       :name="name"
@@ -19,13 +20,30 @@
     </profile-page>
     <button @click="handleUpdate">Update Name</button>
   </div>
+  <!-- end props -->
+
+  <!-- slots -->
+  <compont-brand>
+    <template v-slot:top>
+      <strong>top content brand</strong>
+    </template>
+    <template v-slot:brand>
+      <ul style="padding: 10px">
+        <li v-for="(items, index) in brand" :key="index">{{ items }}</li>
+      </ul>
+    </template>
+    <strong>botton content brand</strong>
+  </compont-brand>
+  <!-- end slots -->
   <app-footer />
 </template>
 <script>
 import ProfilePage from "./components/user/ProfilePage.vue";
+import compontBrand from "./components/cars/brand.vue";
 export default {
   components: {
     ProfilePage,
+    compontBrand,
   },
   data() {
     return {
@@ -37,6 +55,7 @@ export default {
         father: "dhani",
         mother: "siti",
       },
+      brand: ["toyota", "honda", "suzuki"],
     };
   },
   methods: {
