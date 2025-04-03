@@ -4,26 +4,29 @@
 
   <!-- props -->
   <div class="container">
-    <life-comont v-if="show" ></life-comont>
+    <!-- dynamic component -->
+    <button @click="activComp = 'comp-Orang'">Orange</button>
+    <button @click="activComp = 'comp-Grap'">Grape</button>
+    <!-- <comp-grap v-if="activComp === 'orange-compont'">orange</comp-grap>
+    <comp-orange v-if="activComp === 'grape-compont'">grape</comp-orange> -->
+    <component :is="activComp"></component>
   </div>
   <app-footer />
 </template>
 <script>
-import lifeComont from "./components/Life/index.vue";
+import compOrang from "./components/fruits/orang.vue";
+import compGrap from "./components/fruits/grap.vue";
 export default {
   components: {
-    lifeComont,
+    compGrap,
+    compOrang,
   },
   data() {
     return {
-      show: true,
+      activComp: "comp-Orang",
     };
   },
-  mounted() {
-    setTimeout(() => {
-      this.show = false;
-    }, 5000);
-  },
+  mounted() {},
   methods: {},
 };
 </script>
