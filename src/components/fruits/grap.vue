@@ -3,7 +3,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  unmounted() {
+    console.log("Grape component removed from dom");
+  },
+};
 </script>
 
 <style>
