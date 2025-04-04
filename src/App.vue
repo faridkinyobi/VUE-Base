@@ -1,12 +1,17 @@
 
 <template>
   <app-header />
-
+  <div class="container">
+    <com-contact></com-contact>
+  </div>
   <app-footer />
 </template>
 <script>
+import comContact from "./components/contact/index.vue";
 export default {
-  components: {},
+  components: {
+    comContact,
+  },
   data() {
     return {};
   },
