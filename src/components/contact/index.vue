@@ -1,5 +1,8 @@
 <template>
-  <form class="row g-3">
+  <form class="row g-3" @submit.prevent="submitCheckForm">
+    <div v-if="this.error.length" class="alert alert-danger">
+      <div v-for="(error, index) in error" :key="index">{{ error }}</div>
+    </div>
     <div class="row">
       <div class="col-xl-12">
         <h2>contact person</h2>
@@ -18,11 +21,11 @@
         <div class="form-group g-1">
           <label for="email">email</label>
           <input
-            type="text"
+            type="email"
             class="form-control"
             id="email"
             placeholder="email"
-            v-model="form.emial"
+            v-model="form.email"
           />
         </div>
         <div class="form-group g-1">
@@ -103,7 +106,7 @@
             </option>
           </select>
         </div>
-        <button class="btn btn-dark" @click.prevent="submitForm()">save</button>
+        <button class="btn btn-dark">save</button>
       </div>
     </div>
   </form>
@@ -116,13 +119,14 @@ export default {
     return {
       form: {
         nama: "",
-        emial: "",
+        email: "",
         subject: "",
         massage: "",
         extras: [],
         gender: "male",
         country: " ",
       },
+      error: [],
       listCountry: ["indenesia", "vietnam", "malaysia", "singapore"],
     };
   },
@@ -130,8 +134,27 @@ export default {
   //   console.log(this.form);
   // },
   methods: {
+    submitCheckForm(e) {
+      this.error = [];
+      if (!this.form.nama) {
+        this.error.push("Name is required!!");
+      }
+      if (!this.form.email) {
+        this.error.push("Email is required!!");
+      } else if (!this.validete(this.form.email)) {
+        this.error.push("Email is not valid!!");
+      }
+      if (!this.error.length) {
+        this.submitForm();
+      }
+    },
     submitForm() {
       console.log(this.form);
+    },
+    validete(email) {
+      const res = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+      return res.test(email);
     },
   },
 };
